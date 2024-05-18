@@ -18,3 +18,5 @@ Typing 'c' applies suggested correction:
 ![image](https://github.com/vanaigr/google-refresh-2023/assets/65824523/8ea03d41-208a-4768-92f6-1280efebed87)
 
 Typing '/' or '.' focuses input on the search box. '\<Enter\>' opens new results page in the current tab.
+
+Note: these vimium keys need to be excluded: "s,j,k,d,l,f,n,i,e,w,o,m,u,v,a,q,z,/,."
