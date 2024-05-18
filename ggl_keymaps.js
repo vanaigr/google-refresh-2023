@@ -44,8 +44,8 @@
             var b = a.querySelector('div.BNeawe.vvjwJb.AP7Wnd.UwRFLe')
             if(b == null) continue;
             var label = document.createElement('span')
-            var key = first == null ? '·' : keys[labels_c].toUpperCase()
-            label.textContent = key
+            var key = first == null ? '·' : keys[labels_c]
+            label.textContent = key.toUpperCase()
             label.classList.add('open-url-label')
 
             b.prepend(label)
@@ -81,42 +81,50 @@
         var remap_i = remap.indexOf(key)
         if(remap_i >= 0) key = orig[remap_i]
 
-        var result
-        if(key === ' ') {
-            in_labels = false
-            result = first
-        }
-        else if(in_labels) {
-            result = labels[key]
-            in_labels = false
-        }
-
-        if(!result) {
+        if(!in_labels) {
             if(key === 's') {
                 in_labels = true
-                replace = false
+                replace = true
+                document.body.setAttribute('data-in-labels', in_labels)
+                return
             }
             else if(key === 'f') {
                 in_labels = true
-                replace = true
-            }
-            else if(key == 'c' && correction_text) {
-                result = 'https://www.google.com/search?gbv=1&q=' + correction_text
-                replace = true
-                in_labels = false
-            } else if(key == '/' || key == '.') { //йцукен / is .
-                window.__FocusSearch();
-                event.preventDefault()
+                replace = false
+                document.body.setAttribute('data-in-labels', in_labels)
                 return
             }
         }
 
+        var result
+
+        if(key === ' ') {
+            // if 'f ' is typed, then open in new, if ' ' or 's ', then replace
+            if(!in_labels) replace = true;
+            result = first
+        }
+        else if(in_labels) {
+            result = labels[key]
+        }
+
+
+        in_labels = false
         document.body.setAttribute('data-in-labels', in_labels);
 
         if(result) {
-            in_labels = false
-            console.log(result)
             window.open(result, replace ? '_self' : '_blank')
+            return
+        }
+
+        if(key == 'c' && correction_text) {
+            result = 'https://www.google.com/search?gbv=1&q=' + correction_text
+            window.open(result, '_self')
+            return
+        }
+        else if(key == '/' || key == '.') { //йцукен / is .
+            window.__FocusSearch();
+            event.preventDefault()
+            return
         }
     });
 })();
