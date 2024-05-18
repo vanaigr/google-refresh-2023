@@ -86,12 +86,14 @@
                 in_labels = true
                 replace = true
                 document.body.setAttribute('data-in-labels', in_labels)
+                document.body.setAttribute('data-replace', replace)
                 return
             }
             else if(key === 'f') {
                 in_labels = true
                 replace = false
                 document.body.setAttribute('data-in-labels', in_labels)
+                document.body.setAttribute('data-replace', replace)
                 return
             }
         }

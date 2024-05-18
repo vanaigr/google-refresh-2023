@@ -147,8 +147,11 @@ font-size: 1.3em;
 margin-right: 0.5rem;
 }
 
-body[data-in-labels=true] span.open-url-label {
+body[data-in-labels=true][data-replace=true] span.open-url-label {
 color: red;
+}
+body[data-in-labels=true][data-replace=false] span.open-url-label {
+color: #00ff50;
 }
 body:not([data-in-labels=true]) span.open-url-label {
 color: #fff582;
