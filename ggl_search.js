@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2024-05-17
 // @description  Replace search in google result page (default is obsured)
-// @author       You
+// @author       vanaigr
 // @match        https://www.google.com/search?*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
 // @grant        none

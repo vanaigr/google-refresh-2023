@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      2024-05-17
 // @description  add keymaps for opening results, searching and correction
-// @author       You
+// @author       vanaigr
 // @match        https://www.google.com/search?*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
 // @grant        none
