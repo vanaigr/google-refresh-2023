@@ -1,158 +1,126 @@
-/* body {
-  margin: 0 auto 0 auto !important;
-  max-width: min(100vh, 100%) !important;
-  min-width: 0px !important;
-} */
-
 /* google logo */
 .cOl4Id { display: none; }
 
 /* related questions and junk */
 div:has(> div > .K8tyEc) { display: none; }
 
-
+/* why would you set min-width on body? */
 body {
-  margin: 0;
-  width: unset;
-  max-width: unset;
+    margin: 0;
+    width: unset;
+    max-width: unset;
 }
 
 /* make results into a grid*/
 #main {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  right: 1rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(60vh, 1fr));
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60vh, 1fr));
 }
 
-/* reposition subtabs w/ query */
-body > header {
-  max-width: 60vh;
-}
+/* remove 'filter results by date' ? (currently empty) */
+#main > :nth-child(2 of div) { display: none; }
+
+/* images, news, etc. Also contains custom search since it's easier to place it there */
 #main > :first-child {
-  grid-row: 1;
-  grid-column: 1;
-  /*margin-top: 4rem;*/
-}
-#main > :nth-child(2 of div) {
-  display: none;
+    grid-row: 1;
+    grid-column: 1;
 }
 /* google correction in the same space*/
 #main > div.Gx5Zad.xpd.EtOod.pkphOe {
-  grid-column: 1;
-  grid-row: 1;
-  margin-top: 8rem;
-  margin-bottom: 1rem;
-  & > div { margin-bottom: 0; }
+    grid-column: 1;
+    grid-row: 1;
+    margin-top: 8rem; /* hack */
+    margin-bottom: 1rem;
+    & > div { margin-bottom: 0; }
 }
 
 /* results */
-#main > div {
-  margin: 0.3rem 0.3rem;
-}
+#main > div { margin: 0.3rem 0.3rem; }
 
-/* nonsense in define/sound */
-#main > div:has(> br:only-child) {
-  display: none;
-}
+/* nonsense empty line in define/sound */
+div:has(> br:only-child) { display: none; }
 
+/* upside-down result */
 #main > div > div.Gx5Zad.xpd.EtOod.pkphOe:not(.fP1Qef) {
-  overflow: hidden; /* for images */
-  /* shrink upside-down question */
-  & > div.x54gtf + div.kCrYT {
-    padding-top: 0;
-  }
-  div.oTWEpb, div.x54gtf {
-    display: none;
-  }
-  & > div.kCrYT:first-child {
-    display: flex;
-    gap: 1rem;
-  }
+    overflow: hidden; /* for images */
+
+    /* shrink */
+    & > div.x54gtf + div.kCrYT { padding-top: 0; }
+    div.oTWEpb, div.x54gtf { display: none; } /* ? */
+    & > div.kCrYT:first-child { /* ? */
+        display: flex;
+        gap: 1rem;
+    }
 }
 
-/* first upside-down ans is typically big */
-#main > :nth-child(1 of div:has(> div.Gx5Zad.xpd.EtOod.pkphOe:not(.fP1Qef):first-child):not(:has(> div > div.K8tyEc))) {
-  grid-row: span 2;
-}
-
-#main > div > div.Gx5Zad.xpd.EtOod.pkphOe.fP1Qef {
-  /*remove paddings*/
-  & > div.egMi0.kCrYT {
-    padding: 0;
-  }
-  & > div.kCrYT {
-    padding: 0;
-    padding-top: 1.2rem;
-  }
-}
-
-/* other related links */
-div.BNeawe.s3v9rd.AP7Wnd > div > div > div.v9i61e,
-div.BNeawe.s3v9rd.AP7Wnd > div > div > div > div.BNeawe.s3v9rd.AP7Wnd {
-  padding-bottom: 0;
-  & a > span {
-    font-size: 0.8em;
-  }
-}
-
-/* Bring answer title closer to link */
-div.j039Wc {
-  padding-top: 1.6rem;
-}
-
-div.v9i61e {
-  padding-bottom: 0;
-}
-
-div.Q0HXG {display: none; }
+/* remove separator lines inside upside-down answer */
+.Gx5Zad.fP1Qef { margin: 0; }
+div.Q0HXG { display: none; }
 div.Q0HXG + * { padding-top: 0;}
 
-.Gx5Zad.fP1Qef {
-  margin: 0;
+/* first upside-down result is typically big */
+#main > :nth-child(1 of div:has(> div.Gx5Zad.xpd.EtOod.pkphOe:not(.fP1Qef):first-child):not(:has(> div > div.K8tyEc))) {
+    grid-row: span 2;
 }
 
-footer .Srfpq {
-  display: none;
+/* regular result */
+#main > div > div.Gx5Zad.xpd.EtOod.pkphOe.fP1Qef {
+    /*remove paddings*/
+    & > div.egMi0.kCrYT { padding: 0; }
+    /* result text */
+    & > div.kCrYT {
+        padding: 0;
+        padding-top: 1.2rem;
+    }
 }
-footer .Srfpq + * {
-  display: none;
+
+/* other related links inside result */
+div.BNeawe.s3v9rd.AP7Wnd > div > div > div.v9i61e,
+div.BNeawe.s3v9rd.AP7Wnd > div > div > div > div.BNeawe.s3v9rd.AP7Wnd {
+    padding-bottom: 0;
+    & a > span { font-size: 0.8em; }
 }
+/* put related links closer */
+div.v9i61e { padding-bottom: 0; }
+
+/* Bring answer title closer to link */
+div.j039Wc { padding-top: 1.6rem; }
+
+
+/* hide location */
+footer .Srfpq { display: none; }
+/* hide 'sign up' */
+footer .Srfpq + * { display: none; }
+/* remove some footer padding */
 #EOlPnc {
-  margin-top: 0;
-  & > * {
-    margin: 0;
-  }
+    margin-top: 0;
+    & > * { margin: 0; }
 }
 
-
+/* custom search */
 div:has(> .search) {
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
 }
 .search {
-  background: rgb(48, 49, 52);
-  border: none;
- outline: 0.05rem solid gray;
- font-size: 2em;
- color: lightgray;
+    background: rgb(48, 49, 52);
+    border: none;
+    outline: 0.05rem solid gray;
+    font-size: 2em;
+    color: lightgray;
 }
 
-
+/* results labels */
 span.open-url-label {
-font-size: 1.3em;
-margin-right: 0.5rem;
+    font-size: 1.3em;
+    margin-right: 0.5rem;
 }
 
-body[data-in-labels=true][data-replace=true] span.open-url-label {
-color: red;
-}
-body[data-in-labels=true][data-replace=false] span.open-url-label {
-color: #00ff50;
-}
-body:not([data-in-labels=true]) span.open-url-label {
-color: #fff582;
-}
+body[data-in-labels=true][data-replace=true] span.open-url-label { color: red; }
+body[data-in-labels=true][data-replace=false] span.open-url-label { color: #00ff50; }
+body:not([data-in-labels=true]) span.open-url-label { color: #fff582; }
