@@ -87,6 +87,7 @@
                 replace = true
                 document.body.setAttribute('data-in-labels', in_labels)
                 document.body.setAttribute('data-replace', replace)
+                event.preventDefault()
                 return
             }
             else if(key === 'f') {
@@ -94,6 +95,7 @@
                 replace = false
                 document.body.setAttribute('data-in-labels', in_labels)
                 document.body.setAttribute('data-replace', replace)
+                event.preventDefault()
                 return
             }
         }
@@ -115,12 +117,14 @@
 
         if(result) {
             window.open(result, replace ? '_self' : '_blank')
+            event.preventDefault()
             return
         }
 
         if(key == 'c' && correction_text) {
             result = 'https://www.google.com/search?gbv=1&q=' + correction_text
             window.open(result, '_self')
+            event.preventDefault()
             return
         }
         else if(key == '/' || key == '.') { //йцукен / is .
