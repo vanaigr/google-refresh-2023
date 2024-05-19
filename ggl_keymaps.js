@@ -36,6 +36,7 @@
                 var end_pos = href.indexOf('&', google_tracking.length)
                 href = href.substring(google_tracking.length, end_pos)
             }
+            href = decodeURIComponent(href)
 
             // imagine that 'b' is 'name', funnily, everything breaks if you actually name it this way :)
             // for(k in window) { var v = window[k]; if (typeof(v) === "string" && v === "null") console.log(k); }
