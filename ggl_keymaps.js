@@ -27,6 +27,7 @@
     var buffered_input = [];
     var loaded = false;
 
+    var correction_text
     var in_labels = false
     var replace = false
 
@@ -92,11 +93,13 @@
             buffered_input.push(key)
         }
         else {
-            if(handle_key(key))
+            if(handle_key(key)) {
+                event.preventDefault()
+            }
         }
     });
 
-    document.addEventListener('DOMContentLoaded', () => {
+    const load = () => {
         /*add custom search bar*/ {
             function createElementFromHTML(htmlString) {
                 const template = document.createElement('template');
@@ -169,7 +172,6 @@
                 }
             } catch(_) { console.error(_) }
 
-            let correction_text
             try {
                 let corr_root = document.querySelector('#main > div.Gx5Zad.xpd.EtOod.pkphOe')
                 let corr_a = corr_root.querySelector('a')
@@ -186,5 +188,11 @@
         for(let key of buffered_input) {
             handle_key(key)
         }
-    })
+    }
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", load);
+    } else {
+        load();
+    }
 })();
