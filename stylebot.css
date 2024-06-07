@@ -21,8 +21,13 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(60vh, 1fr));
 }
 
+/*no idea what this is, some line*/
+#main > div.BsXmcf {
+  display: none;
+}
+
 /* remove 'filter results by date' ? (currently empty) */
-#main > :nth-child(2 of div) { display: none; }
+#main > :nth-child(2 of div:not([class])) { display: none; }
 
 /* images, news, etc. Also contains custom search since it's easier to place it there */
 #main > :first-child {
@@ -123,4 +128,8 @@ span.open-url-label {
 
 body[data-in-labels=true][data-replace=true] span.open-url-label { color: red; }
 body[data-in-labels=true][data-replace=false] span.open-url-label { color: #00ff50; }
-body:not([data-in-labels=true]) span.open-url-label { color: #fff582; }
+body[data-in-labels="2"] span.open-url-label { color: blueviolet; }
+body[data-in-labels=false] span.open-url-label, body:not([data-in-labels]) span.open-url-label
+{
+    color: #fff582;
+}

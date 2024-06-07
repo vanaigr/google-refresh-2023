@@ -62,7 +62,7 @@
 
 
         in_labels = false
-        document.body.setAttribute('data-in-labels', in_labels);
+        document.body.setAttribute('data-in-labels', result ? 2 : in_labels);
 
         if(result) {
             window.open(result, replace ? '_self' : '_blank')
