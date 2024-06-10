@@ -10,6 +10,8 @@
 // @run-at       document-start
 // ==/UserScript==
 
+/* note: never use variable named "name", it is impossible to debug in firefox, it seems ("under"-shadowed by window.name ?) */
+
 (function() {
     'use strict';
 
@@ -140,8 +142,14 @@
             for(let i = 1; i < answers.length; i++) try {
                 if(labels_c >= keys.length) break;
 
-                let a = answers[i].querySelector('a');
-                if(a) {
+                let links = answers[i].querySelectorAll('a');
+                for(let j = 0; j < links.length; j++) try {
+                    let a = links[j];
+                    if(!a) continue;
+                    let b = a.querySelector('div.BNeawe.vvjwJb.AP7Wnd.UwRFLe');
+                    if(!b) continue;
+
+                    // fix url
                     let href = a.href
                     let google_tracking = 'https://www.google.com/url?q='
                     if(href.startsWith(google_tracking)) {
@@ -150,18 +158,13 @@
                     }
                     href = decodeURIComponent(href)
 
-                    // imagine that 'b' is 'name', funnily, everything breaks if you actually name it this way :)
-                    // for(k in window) { let v = window[k]; if (typeof(v) === "string" && v === "null") console.log(k); }
-                    // this prints "name" lol. And it is not reasignable.
-                    // This only happens in one tab... WTF
-                   let b = a.querySelector('div.BNeawe.vvjwJb.AP7Wnd.UwRFLe')
-                    if(b == null) continue;
+                    // create html label
                     let label = document.createElement('span')
                     let key = first == null ? '·' : keys[labels_c]
                     label.textContent = key.toUpperCase()
                     label.classList.add('open-url-label')
-
                     b.prepend(label)
+
                     if(!first) {
                         first = href
                     }
@@ -169,7 +172,7 @@
                         labels_c++
                         labels[key] = href
                     }
-                }
+                } catch(_) { console.error(_) }
             } catch(_) { console.error(_) }
 
             try {
