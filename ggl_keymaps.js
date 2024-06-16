@@ -83,7 +83,8 @@
     }
 
     document.addEventListener("keypress", function(event) {
-        if (document.activeElement != document.body) return;
+        let ae = document.activeElement
+        if(ae && ae.tagName == 'INPUT') return;
 
         console.log("Key pressed: " + event.key, in_labels);
 
