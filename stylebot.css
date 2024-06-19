@@ -34,6 +34,8 @@ body {
     grid-row: 1;
     grid-column: 1;
 }
+/* more result margins */
+.Gx5Zad { margin: 0px; }
 /* google correction in the same space*/
 #main > div.Gx5Zad.xpd.EtOod.pkphOe {
     grid-column: 1;
@@ -60,6 +62,8 @@ div:has(> br:only-child) { display: none; }
         display: flex;
         gap: 1rem;
     }
+    /* "About Featured Snippets" */
+    .kCrYT > .hfgVwf { display: none; }
 }
 
 /* remove separator lines inside upside-down answer */
