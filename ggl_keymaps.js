@@ -103,6 +103,19 @@
     });
 
     const load = () => {
+        /* remove google tracking. not because it's tracking,
+        but because url history is broken and it's +1 redirect */ {
+            let google_tracking = 'https://www.google.com/url?q='
+            for(let a of document.querySelectorAll('a')) {
+                let href = a.href
+                if(href.startsWith(google_tracking)) {
+                    let end_pos = href.indexOf('&', google_tracking.length)
+                    href = href.substring(google_tracking.length, end_pos)
+                }
+                a.href = decodeURIComponent(href)
+            }
+        }
+
         /*add custom search bar*/ {
             function createElementFromHTML(htmlString) {
                 const template = document.createElement('template');
@@ -150,14 +163,7 @@
                     let b = a.querySelector('div.BNeawe.vvjwJb.AP7Wnd.UwRFLe');
                     if(!b) continue;
 
-                    // fix url
                     let href = a.href
-                    let google_tracking = 'https://www.google.com/url?q='
-                    if(href.startsWith(google_tracking)) {
-                        let end_pos = href.indexOf('&', google_tracking.length)
-                        href = href.substring(google_tracking.length, end_pos)
-                    }
-                    href = decodeURIComponent(href)
 
                     // create html label
                     let label = document.createElement('span')
