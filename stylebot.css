@@ -18,7 +18,7 @@ body {
     left: 1rem;
     right: 1rem;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(max(60vh, 20vw), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
 }
 
 /*no idea what this is, some line*/
