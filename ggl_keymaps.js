@@ -85,6 +85,7 @@
     document.addEventListener("keypress", function(event) {
         let ae = document.activeElement
         if(ae && ae.tagName == 'INPUT') return;
+        //if (document.activeElement != document.body) return;
 
         console.log("Key pressed: " + event.key, in_labels);
 
@@ -191,6 +192,29 @@
                 let text_end = corr_href.indexOf('&', text_start)
                 correction_text = corr_href.substring(text_start, text_end)
             } catch(_) {}
+        }
+
+        /* Compress google video description parameters (duration, date) */ {
+            var sel = 'span.r0bn4c.rQMQod + br:has(+ span.r0bn4c.rQMQod)'
+            var elements = document.querySelectorAll(sel);
+            for(var i = 0; i < elements.length; i++) {
+                var br = elements[i];
+                try {
+                    var text = br.nextSibling
+                    var span = text.nextSibling
+                    // duplicate, it has date before description
+                    if (text.textContent === 'Posted: ') {
+                        var parent = span.parentNode
+                        text.remove()
+                        span.remove()
+                        br.remove()
+                        continue;
+                    }
+                } catch(_) {}
+                var ne = document.createElement('span');
+                ne.textContent = ' · '
+                br.parentNode.replaceChild(ne, br);
+            }
         }
 
         loaded = true
