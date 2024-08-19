@@ -130,10 +130,8 @@ span.open-url-label {
     margin-right: 0.5rem;
 }
 
-body[data-in-labels=true][data-replace=true] span.open-url-label { color: red; }
-body[data-in-labels=true][data-replace=false] span.open-url-label { color: #00ff50; }
-body[data-in-labels="2"] span.open-url-label { color: blueviolet; }
-body[data-in-labels=false] span.open-url-label, body:not([data-in-labels]) span.open-url-label
-{
+body span.open-url-label {
     color: #fff582;
 }
+body[data-replace=false] span.open-url-label { color: #00ff50; }
+body[data-opened-labels="true"] span.open-url-label { color: red; }

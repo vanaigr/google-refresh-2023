@@ -32,7 +32,12 @@
     var correction_text
     var replace = true
 
+    var opened_labels_timer
+
     function handle_key(key) {
+        clearTimeout(opened_labels_timer)
+        document.body.setAttribute('data-opened-labels', false);
+
         if(key === 'f') {
             replace = !replace
             document.body.setAttribute('data-replace', replace)
@@ -57,6 +62,11 @@
         else {
             result = labels[key]
         }
+
+        document.body.setAttribute('data-opened-labels', true);
+        opened_labels_timer = setTimeout(() => {
+            document.body.setAttribute('data-opened-labels', false);
+        }, 1000)
 
         if(result) {
             window.open(result, replace ? '_self' : '_blank')
