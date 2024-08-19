@@ -16,7 +16,7 @@
     'use strict';
 
     var keys = [
-        's', 'j', 'k', 'd', 'l', 'f', 'n', 'i', 'e', 'w', 'o',
+        's', 'j', 'k', 'd', 'l', 'n', 'i', 'e', 'w', 'o',
         'm', 'u', 'v', 'a', 'q', 'z'
     ]
     var orig  = (`qwertyuiop[]asdfghjkl;'zxcvbnm,.`).split('')
@@ -30,64 +30,45 @@
     var loaded = false;
 
     var correction_text
-    var in_labels = false
-    var replace = false
+    var replace = true
 
     function handle_key(key) {
-        if(!in_labels) {
-            if(key === 's') {
-                in_labels = true
-                replace = true
-                document.body.setAttribute('data-in-labels', in_labels)
-                document.body.setAttribute('data-replace', replace)
-                return true
-            }
-            else if(key === 'f') {
-                in_labels = true
-                replace = false
-                document.body.setAttribute('data-in-labels', in_labels)
-                document.body.setAttribute('data-replace', replace)
-                return true
-            }
-        }
-
-        var result
-
-        if(key === ' ') {
-            // if 'f ' is typed, then open in new, if ' ' or 's ', then replace
-            if(!in_labels) replace = true;
-            result = first
-        }
-        else if(in_labels) {
-            result = labels[key]
-        }
-
-
-        in_labels = false
-        document.body.setAttribute('data-in-labels', result ? 2 : in_labels);
-
-        if(result) {
-            window.open(result, replace ? '_self' : '_blank')
+        if(key === 'f') {
+            replace = !replace
+            document.body.setAttribute('data-replace', replace)
             return true
         }
-
-        if(key == 'c' && correction_text) {
-            result = 'https://www.google.com/search?gbv=1&q=' + correction_text
-            window.open(result, '_self')
+        else if(key == 'c') {
+            if(correction_text) {
+                result = 'https://www.google.com/search?gbv=1&q=' + correction_text
+                window.open(result, '_self')
+            }
             return true
         }
         else if(key == '/' || key == '.') { //йцукен / is .
             window.__FocusSearch();
             return true
         }
+
+        var result
+        if(key === ' ') {
+            result = first
+        }
+        else {
+            result = labels[key]
+        }
+
+        if(result) {
+            window.open(result, replace ? '_self' : '_blank')
+            return true
+        }
+
     }
 
     document.addEventListener("keypress", function(event) {
         let ae = document.activeElement
         if(ae && ae.tagName == 'INPUT') return;
         //if (document.activeElement != document.body) return;
-
-        console.log("Key pressed: " + event.key, in_labels);
 
         var key = event.key
         var remap_i = remap.indexOf(key)
