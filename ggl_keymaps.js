@@ -63,12 +63,12 @@
             result = labels[key]
         }
 
-        document.body.setAttribute('data-opened-labels', true);
-        opened_labels_timer = setTimeout(() => {
-            document.body.setAttribute('data-opened-labels', false);
-        }, 1000)
-
         if(result) {
+            document.body.setAttribute('data-opened-labels', true);
+            opened_labels_timer = setTimeout(() => {
+                document.body.setAttribute('data-opened-labels', false);
+            }, 1000)
+
             window.open(result, replace ? '_self' : '_blank')
             return true
         }
