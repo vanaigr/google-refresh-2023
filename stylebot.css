@@ -122,7 +122,9 @@ div:has(> .search) {
 .search {
     background: rgb(48, 49, 52);
     border: none;
-    outline: 0.05rem solid gray;
+    border-radius: 999999px;
+    padding: 0.1rem 1rem 0.3rem 1rem;
+    margin-bottom: 0.2rem;
     font-size: 2em;
     color: lightgray;
 }
