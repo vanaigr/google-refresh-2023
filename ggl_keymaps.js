@@ -152,7 +152,7 @@
                 for(let j = 0; j < links.length; j++) try {
                     let a = links[j];
                     if(!a) continue;
-                    let b = a.querySelector('div.BNeawe.vvjwJb.AP7Wnd.UwRFLe');
+                    let b = a.querySelector('div.ilUpNd.UFvD1.aSRlid.IwSnJ');
                     if(!b) continue;
 
                     let href = a.href
