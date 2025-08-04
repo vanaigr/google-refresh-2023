@@ -140,3 +140,8 @@ body span.open-url-label {
 }
 body[data-replace=false] span.open-url-label { color: #00ff50; }
 body[data-opened-labels="true"] span.open-url-label { color: red; }
+
+
+*[data-ved]:has(> *.Gx5Zad.xpd.EtOod.pkphOe) {
+  display: none;
+}
